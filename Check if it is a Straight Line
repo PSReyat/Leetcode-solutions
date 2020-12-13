@@ -1,0 +1,34 @@
+class Solution {
+    public boolean checkStraightLine(int[][] coordinates) {
+        int gradientCheckX = coordinates[coordinates.length - 1][0];
+        int gradientCheckY = coordinates[coordinates.length - 1][1];
+        List<Integer> checks = new ArrayList<>();
+        
+        int gradient = 0;
+        int x = 0;
+        int y = 0;
+        
+        for(int i = coordinates.length - 2; i >= 0; i--){
+            x = coordinates[i][0];
+            y = coordinates[i][1];
+            
+            if(gradientCheckX - x == 0){
+                return false;
+            }
+            
+            gradient = (gradientCheckY - y)/(gradientCheckX - x);
+            
+            checks.add(gradient);
+        }
+        
+        for(int j = 0; j < checks.size() - 1; j++){
+            
+            if(checks.get(j) != checks.get(j + 1)){
+                return false;
+            }
+            
+        }
+        
+        return true;
+    }
+}
