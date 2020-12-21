@@ -1,0 +1,71 @@
+class Solution {
+    public String reformat(String s) {
+        
+        String reformatted = "";
+        String c = "";
+        String n = "";
+        
+        int nums = 0;
+        int letters = 0;
+        
+        if(s.length() == 1){
+            return s;
+        }
+        
+        if(s.matches("[a-z]*") || s.matches("[0-9]*")){
+            return "";
+        }
+        
+        for(int i = 0; i < s.length(); i++){
+            if(Character.isDigit(s.charAt(i))){
+                nums++;
+                n += s.charAt(i) + "";
+            }else{
+                letters++;
+                c += s.charAt(i) + "";
+            }
+        }
+        
+        if(Math.abs(nums - letters) > 1){
+            return "";
+        }
+        
+        if(nums > letters){
+            for(int j = 0; j < n.length(); j++){
+                
+                reformatted += n.charAt(j) + "";
+                
+                if(j == n.length() - 1){
+                    break;
+                }
+                
+                reformatted += c.charAt(j) + "";
+            }
+        }else if(letters > nums){
+            for(int k = 0; k < c.length(); k++){
+                
+                reformatted += c.charAt(k) + "";
+                
+                if(k == c.length() - 1){
+                    break;
+                }
+                
+                reformatted += n.charAt(k) + "";
+            }
+        }else{
+            for(int m = 0; m < n.length(); m++){
+                
+                reformatted += n.charAt(m) + "";
+                
+                reformatted += c.charAt(m) + "";
+            }
+        }
+        
+        
+        
+        
+        return reformatted;
+        
+        
+    }
+}
