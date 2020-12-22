@@ -1,0 +1,35 @@
+class Solution {
+    public int maxScore(String s) {
+        List<Integer> scores = new ArrayList<>();
+        
+        int left = 0;
+        int right = 0;
+        
+        String leftSet = null;
+        String rightSet = null;
+        
+        for(int i = 0; i < s.length() - 1; i++){
+            leftSet = s.substring(0, i + 1);
+            rightSet = s.substring(i + 1, s.length());
+            
+            for(int j = 0; j < leftSet.length(); j++){
+                if(leftSet.charAt(j) == '0'){
+                    left++;
+                }
+            }
+            
+            for(int k = 0; k < rightSet.length(); k++){
+                if(rightSet.charAt(k) == '1'){
+                    right++;
+                }
+            }
+            
+            scores.add(left + right);
+            
+            left = 0;
+            right = 0;
+        }
+        
+        return Collections.max(scores);
+    }
+}
