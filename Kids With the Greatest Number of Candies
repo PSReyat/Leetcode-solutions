@@ -1,0 +1,22 @@
+class Solution {
+    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+        int largest = candies[0];
+        List<Boolean> list = new ArrayList<>();
+        
+        for(int i = 0; i < candies.length - 1; i++){
+            if(largest < candies[i + 1]){
+                largest = candies[i + 1];
+            }
+        }
+        
+        for(int j = 0; j < candies.length; j++){
+            if(candies[j] + extraCandies >= largest){
+                list.add(true);
+            }else{
+                list.add(false);
+            }
+        }
+        
+        return list;
+    }
+}
