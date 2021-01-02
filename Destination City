@@ -1,0 +1,33 @@
+class Solution {
+    public String destCity(List<List<String>> paths) {
+        Map<String, Integer> lastDest = new HashMap<>();
+        String noDest = "";
+        int count = 0;
+        
+        for(int i = 0; i < paths.size(); i++){
+            for(int j = 0; j < paths.size(); j++){
+                
+                if(!paths.get(i).get(1).equals(paths.get(j).get(0)) && i != j){
+                    count++;
+                }
+                
+            }
+            
+            lastDest.put(paths.get(i).get(1), count);
+            count = 0;
+            
+        }
+        
+        
+        for(String temp : lastDest.keySet()){
+            if(lastDest.get(temp) == paths.size() - 1){
+                noDest = temp;
+                break;
+            }
+        }
+        
+        return noDest;
+        
+        
+    }
+}
